@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <title>Job Search Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">YOUR JOB SEARCH, IN ONE PLACE</p>
+          <h1>Keep your momentum.</h1>
+          <p class="intro">Log each application and see your progress, one day at a time.</p>
+        </div>
+        <div class="date-chip" id="today-label" aria-live="polite"></div>
+      </header>
+
+      <section class="summary-card" aria-labelledby="daily-progress-title">
+        <div class="summary-top">
+          <div>
+            <p class="eyebrow">DAILY TARGET</p>
+            <h2 id="daily-progress-title"><span id="today-count">0</span> <span class="count-unit">applications today</span></h2>
+          </div>
+          <span class="goal-badge" id="goal-badge">0 / 20</span>
+        </div>
+        <progress id="goal-progress" value="0" max="20" aria-label="Daily application goal progress"></progress>
+        <p class="goal-message" id="goal-message" aria-live="polite">20 applications is your daily goal. You’ve got this.</p>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel form-panel" aria-labelledby="add-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">MAKE IT COUNT</p>
+              <h2 id="add-title">Add an application</h2>
+            </div>
+          </div>
+          <form id="application-form">
+            <label for="company">Company <span class="required-mark">*</span></label>
+            <input id="company" name="company" type="text" maxlength="120" placeholder="e.g. Acme Inc." autocomplete="organization" required>
+
+            <label for="role">Job title</label>
+            <input id="role" name="role" type="text" maxlength="120" placeholder="e.g. Product Designer">
+
+            <div class="field-row">
+              <div>
+                <label for="applied-date">Date applied <span class="required-mark">*</span></label>
+                <input id="applied-date" name="appliedDate" type="date" required>
+              </div>
+              <div>
+                <label for="job-url">Job link</label>
+                <input id="job-url" name="jobUrl" type="url" maxlength="2048" placeholder="https://...">
+              </div>
+            </div>
+
+            <label for="notes">Notes <span class="optional-label">OPTIONAL</span></label>
+            <textarea id="notes" name="notes" rows="3" maxlength="1000" placeholder="Anything you want to remember?"></textarea>
+
+            <button class="primary-button" type="submit">Add application <span aria-hidden="true">→</span></button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="panel history-panel" aria-labelledby="history-title">
+          <div class="section-heading history-heading">
+            <div>
+              <p class="eyebrow">YOUR PROGRESS</p>
+              <h2 id="history-title">Application history</h2>
+            </div>
+            <span class="total-count" id="total-count">0 total</span>
+          </div>
+
+          <label class="search-label" for="history-search">Search your applications</label>
+          <input id="history-search" class="search-input" type="search" placeholder="Search company or job title">
+
+          <div class="application-list" id="application-list" aria-live="polite"></div>
+          <p class="empty-state" id="empty-state">Your applications will show up here. Add the first one to get started.</p>
+        </section>
+      </div>
+      <footer class="privacy-note">Your data stays in this browser on this device.</footer>
+    </main>
+  </body>
+</html>
